@@ -6,18 +6,14 @@
         {
           "path": "./Properties/en/en_strings.properties",
           "file_format": "java_properties",
-          "tag": "app:ApplicationMessages.properties",
+          "tag": "messages",
           "language": "en"
         },
         {
-          "path": "./CSV/en/table_en.csv",
-          "file_format": "csv",
-          "tag": "app:language:6735.csv",
-          "columnDescription": {
-            "KEY": 0,
-            "en": 1
-          },
-          "excludeHeaderRow": true,
+          "path": "./ReactJSON/en/en.json",
+          "file_format": "react_nested_json",
+          "tag": "settings",
+          "key_prefix": "v1",
           "language": "en"
         }
       ]
@@ -27,21 +23,16 @@
         {
           "path": "./Properties/en/<language>.properties",
           "file_format": "java_properties",
-          "tag": "app:ApplicationMessages.properties",
+          "tag": "messages",
           "exclude_languages": [
             "en"
           ]
         },
         {
-          "path": "./CSV/en/<language>.csv",
-          "file_format": "csv",
-          "tag": "app:language:6735.csv",
-          "excludeHeaderRow": true,
-          "excludeBaseLang": true,
-          "columnDescription": {
-            "KEY": 0,
-            "<language>": 1
-          },
+          "path": "./ReactJSON/en/<language>.json",
+          "file_format": "react_nested_json",
+          "tag": "settings",
+          "key_prefix": "v1",
           "exclude_languages": [
             "en"
           ]
