@@ -4,8 +4,7 @@ on:
     branches:
       - main
     paths:
-      - Properties/en/en_strings.properties
-      - ReactJSON/en/en.json
+      - CSV/en/table_en.csv
   workflow_dispatch:
     inputs:
       push_targets:
@@ -21,19 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          token: ${{ secrets.APPLANGA_GITHUB_TOKEN }}
           path: checkout
       - uses: applanga/setup-applanga-cli@v1.0.4
         with:
           version: 1.0.*
+          github_token: ${{ secrets.APPLANGA_GITHUB_TOKEN }}
       - name: Push Sources to Applanga
-        if: '${{ inputs.push_targets != true }}'
+        if: ${{ inputs.push_targets != true }}
         env:
           APPLANGA_ACCESS_TOKEN: ${{ secrets.APPLANGA_ACCESS_TOKEN }}
-        run: applanga --debug push --force
+        run: applanga --debug push --force --fail-on-error
         working-directory: checkout
       - name: Push Translation Files to Applanga
-        if: '${{ inputs.push_targets == true }}'
+        if: ${{ inputs.push_targets == true }}
         env:
-          APPLANGA_ACCESS_TOKEN: '${{ secrets.APPLANGA_ACCESS_TOKEN }}'
-        run: applanga --debug pushtarget
+          APPLANGA_ACCESS_TOKEN: ${{ secrets.APPLANGA_ACCESS_TOKEN }}
+        run: applanga --debug pushtarget --fail-on-error
         working-directory: checkout
